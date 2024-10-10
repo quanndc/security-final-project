@@ -1,0 +1,46 @@
+#app-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  overflow: hidden;
+}
+
+#sidebar {
+  width: 10%;
+  height: 100%;
+  min-width: 100px;
+  max-width: 100px;
+  background-color: var(--mat-app-background-color);
+  color: var(--mat-app-text-color);
+  overflow-y: auto;
+}
+
+#main-container {
+  width: calc(100% - 64px);
+  height: 100%;
+
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--md-sys-color-background);
+  color: var(--md-sys-color-on-background);
+
+  mat-toolbar {
+    background-color: var(--md-sys-color-background);
+
+    img {
+      height: 90%;
+      //border-radius: 50%;
+    }
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+#content {
+  flex: 1;
+  overflow-y: auto; /* Allow scrolling in the main content area */
+  padding: 1rem 0;
+}

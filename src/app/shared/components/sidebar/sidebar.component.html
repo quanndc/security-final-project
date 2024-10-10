@@ -1,0 +1,28 @@
+<div id="sidebar-container">
+  <ul class="sidenav-nav">
+    @for (route of dataRoutes; track i; let i = $index) {
+      <li
+        class="sidenav-nav-item"
+        [class]="routeSelected == i ? 'active' : 'inactive'"
+        (click)="navigate(i)"
+      >
+        <a class="sidenav-nav-link">
+          <mat-icon class="material-symbols-rounded sidenav-link-icon">
+            {{ route.icon }}
+          </mat-icon>
+        </a>
+        <p class="sidenav-link-text">
+          {{ route.routeName }}
+        </p>
+      </li>
+    }
+    <span class="spacer"></span>
+    <li class="sidenav-nav-item">
+      <mat-slide-toggle
+        [checked]="checked"
+        (click)="toggleTheme()"
+        #darkModeSwitch
+      ></mat-slide-toggle>
+    </li>
+  </ul>
+</div>
