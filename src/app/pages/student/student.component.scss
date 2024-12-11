@@ -1,0 +1,57 @@
+.student-info-container {
+    padding: 20px;
+    background-color: #f9f4fc;
+    border-radius: 8px;
+  }
+  .header{
+    // background-color: red;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 1%;
+  }
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 32.5%;
+  }
+  .header-content h1 {
+    margin: 0;
+    font-size: 55px;
+    font-weight: bold;
+    color: #6d52a1;
+    text-align: center;
+  } 
+  .header-content .quick-search {
+    min-width: 300px;
+    margin-top: 2%;
+  }
+  
+  .search-section {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    .search-section #dob{
+      margin-left: 10%;
+    }
+  }
+  
+  .add-button {
+    margin-left: auto;
+  }
+  
+  .student-table {
+    width: 100%;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  mat-header-row, mat-row {
+    background-color: #f1e6fc;
+  }
+  
+  th, td {
+    text-align: center;
+  }
+  

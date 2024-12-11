@@ -1,0 +1,28 @@
+<div class="login-container">
+  <mat-card class="login-card">
+    <div mat-grid-list cols="2" rowHeight="fit" class="grid-container">
+      <!-- Phần bên trái chứa logo -->
+      <div class="left-section">
+        <img  src="west-shores-logo.jpg" alt="West Shores Logo" class="logo" />
+      </div>
+
+      <!-- Phần bên phải chứa form -->
+      <div class="right-section">
+        <h1>ĐĂNG NHẬP</h1>
+        <form>
+          <mat-form-field appearance="fill" class="input-field">
+            <mat-label>Tên đăng nhập hoặc Email</mat-label>
+            <input matInput placeholder="Vui lòng nhập thông tin đăng nhập" />
+          </mat-form-field>
+
+          <mat-form-field appearance="fill" class="input-field">
+            <mat-label>Mật khẩu</mat-label>
+            <input matInput type="password" placeholder="Vui lòng nhập mật khẩu" />
+          </mat-form-field>
+
+          <button mat-raised-button color="primary" class="login-button">Đăng nhập</button>
+        </form>
+      </div>
+    </div>
+  </mat-card>
+</div>
