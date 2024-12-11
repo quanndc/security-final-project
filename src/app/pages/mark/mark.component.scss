@@ -1,0 +1,73 @@
+.student-info-container {
+  font-family: 'Arial', sans-serif;
+  padding: 20px;
+  background-color: #f7f4ff;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.student-info-container h1 {
+  text-align: center;
+  color: #6d52a1;
+  margin-bottom: 20px;
+  font-size: 50px;
+  font-weight: bold;
+}
+
+.search-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 20px;
+  justify-content: space-between;
+}
+
+mat-form-field {
+  width: 220px;
+}
+
+button[mat-raised-button] {
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  text-transform: capitalize;
+}
+
+button[mat-raised-button]:hover {
+  opacity: 0.9;
+}
+
+.student-table {
+  width: 100%;
+  background-color: #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+}
+
+.mat-header-cell {
+  background-color: #6d52a1;
+  color: white;
+  text-align: left;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.mat-row, .mat-cell {
+  padding: 10px;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 14px;
+}
+
+.mat-row:nth-child(even) {
+  background-color: #f9f4ff;
+}
+
+.mat-icon-button {
+  margin: 0 5px;
+}
+
+.mat-icon-button:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}

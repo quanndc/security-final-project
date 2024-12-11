@@ -1,1 +1,90 @@
-<p>mark works!</p>
+<div class="student-info-container">
+  <h1>Quản lý điểm số sinh viên</h1>
+
+  <!-- Phần tìm kiếm -->
+  <div class="search-section">
+    <mat-form-field>
+      <mat-label>Mã sinh viên</mat-label>
+      <input matInput [(ngModel)]="searchCriteria.studentId" placeholder="Nhập mã sinh viên" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Tên sinh viên</mat-label>
+      <input matInput [(ngModel)]="searchCriteria.name" placeholder="Nhập tên sinh viên" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Chọn lớp</mat-label>
+      <mat-select [(ngModel)]="searchCriteria.class">
+        <mat-option *ngFor="let class of classes" [value]="class">{{ class }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Điểm Sinh viên</mat-label>
+      <input matInput [(ngModel)]="searchCriteria.averageScore" placeholder="Nhập điểm sinh viên" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Chọn học kỳ</mat-label>
+      <mat-select [(ngModel)]="searchCriteria.semester">
+        <mat-option *ngFor="let semester of semesters" [value]="semester">{{ semester }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Nút tìm kiếm -->
+    <button mat-raised-button color="primary" (click)="searchScores()">Tìm kiếm</button>
+  </div>
+
+  <!-- Bảng hiển thị điểm số -->
+  <table mat-table [dataSource]="dataSource" class="student-table">
+    <!-- Các cột bảng -->
+    <ng-container matColumnDef="stt">
+      <th mat-header-cell *matHeaderCellDef> STT </th>
+      <td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="studentId">
+      <th mat-header-cell *matHeaderCellDef> Mã sinh viên </th>
+      <td mat-cell *matCellDef="let row">{{ row.studentId }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Tên sinh viên </th>
+      <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="class">
+      <th mat-header-cell *matHeaderCellDef> Lớp </th>
+      <td mat-cell *matCellDef="let row">{{ row.class }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="semester">
+      <th mat-header-cell *matHeaderCellDef> Học kỳ </th>
+      <td mat-cell *matCellDef="let row">{{ row.semester }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="averageScore">
+      <th mat-header-cell *matHeaderCellDef> Điểm trung bình </th>
+      <td mat-cell *matCellDef="let row">{{ row.averageScore }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Thao tác </th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button color="primary" (click)="viewScore(row)">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" (click)="editScore(row)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteScore(row.studentId)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div>
