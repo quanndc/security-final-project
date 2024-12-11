@@ -4,8 +4,13 @@ import {ProfileComponent} from './pages/profile/profile.component';
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'student',
+    redirectTo: 'login',
     pathMatch: 'full',
+  },
+  {
+    path: 'login',
+    loadChildren: () =>
+      import('./pages/login/login.routes').then((r) => r.LOGIN_ROUTES),
   },
   {
     path: 'student',

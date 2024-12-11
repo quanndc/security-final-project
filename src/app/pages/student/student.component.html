@@ -1,1 +1,134 @@
-<p>student works!</p>
+<div class="student-info-container">
+  <div class="header">
+    <div class="header-content">
+      <h1>Thông tin sinh viên</h1>
+      <!-- Khung tìm kiếm nhanh -->
+      <mat-form-field class="quick-search">
+        <mat-label>Tìm kiếm nhanh</mat-label>
+        <input matInput [(ngModel)]="studentSearch.quickSearch" placeholder="Nhập từ khóa tìm kiếm nhanh" />
+      </mat-form-field>
+    </div>
+  </div>
+  
+
+  <!-- Phần tìm kiếm và thêm sinh viên -->
+  <div class="search-section">
+    <mat-form-field id="dob">
+      <mat-label>Ngày sinh (dd/mm/yyyy)</mat-label>
+      <input matInput [matDatepicker]="picker" [(ngModel)]="studentSearch.dob" />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Mã sinh viên</mat-label>
+      <input matInput [(ngModel)]="studentSearch.studentId" placeholder="Nhập mã sinh viên" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Tên sinh viên</mat-label>
+      <input matInput [(ngModel)]="studentSearch.name" placeholder="Nhập tên sinh viên" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Chọn lớp</mat-label>
+      <mat-select [(ngModel)]="studentSearch.class">
+        <mat-option *ngFor="let class of classes" [value]="class">{{ class }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Chọn khoa</mat-label>
+      <mat-select [(ngModel)]="studentSearch.department">
+        <mat-option *ngFor="let department of departments" [value]="department">{{ department }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <!-- Nút Tìm kiếm và Thêm mới -->
+    <button mat-raised-button color="primary" (click)="searchStudents()">Tìm kiếm</button>
+    <button mat-raised-button color="accent" (click)="addStudent()">Thêm mới</button>
+  </div>
+
+  <!-- Bảng hiển thị danh sách sinh viên -->
+  <table mat-table [dataSource]="dataSource" class="student-table">
+    <!-- Các cột bảng -->
+    <ng-container matColumnDef="stt">
+      <th mat-header-cell *matHeaderCellDef> STT </th>
+      <td mat-cell *matCellDef="let row; let i = index">{{ i + 1 }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="studentId">
+      <th mat-header-cell *matHeaderCellDef> Mã sinh viên </th>
+      <td mat-cell *matCellDef="let row">{{ row.studentId }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef> Tên sinh viên </th>
+      <td mat-cell *matCellDef="let row">{{ row.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dob">
+      <th mat-header-cell *matHeaderCellDef> Ngày sinh </th>
+      <td mat-cell *matCellDef="let row">{{ row.dob }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="class">
+      <th mat-header-cell *matHeaderCellDef> Lớp </th>
+      <td mat-cell *matCellDef="let row">{{ row.class }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="department">
+      <th mat-header-cell *matHeaderCellDef> Khoa </th>
+      <td mat-cell *matCellDef="let row">{{ row.department }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Thao tác </th>
+      <td mat-cell *matCellDef="let row">
+        <button mat-icon-button color="primary" (click)="viewStudent(row)">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <button mat-icon-button color="accent" (click)="editStudent(row)">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteStudent(row.studentId)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <!-- Form chỉnh sửa sinh viên -->
+  <div *ngIf="editingStudent" class="edit-form">
+    <h2>Chỉnh sửa thông tin sinh viên</h2>
+    <mat-form-field>
+      <mat-label>Tên sinh viên</mat-label>
+      <input matInput [(ngModel)]="editingStudent.name" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Ngày sinh</mat-label>
+      <input matInput [(ngModel)]="editingStudent.dob" />
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Lớp</mat-label>
+      <mat-select [(ngModel)]="editingStudent.class">
+        <mat-option *ngFor="let class of classes" [value]="class">{{ class }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Khoa</mat-label>
+      <mat-select [(ngModel)]="editingStudent.department">
+        <mat-option *ngFor="let department of departments" [value]="department">{{ department }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <button mat-raised-button color="accent" (click)="saveEdit()">Lưu</button>
+    <button mat-raised-button color="warn" (click)="cancelEdit()">Hủy</button>
+  </div>
+</div>
